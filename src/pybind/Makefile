@@ -80,6 +80,11 @@ itf/options_itf_pybind.cc \
 kaldi_pybind.cc \
 lat/determinize_lattice_pruned_pybind.cc \
 lat/kaldi_lattice_pybind.cc \
+lat/word_align_lattice_pybind.cc \
+lat/lattice_functions_pybind.cc \
+lat/compose_lattice_pruned.cc \
+lm/const_arpa_lm_pybind.cc \
+lm/lm_pybind.cc \
 lat/lat_pybind.cc \
 matrix/compressed_matrix_pybind.cc \
 matrix/kaldi_matrix_pybind.cc \
@@ -117,6 +122,7 @@ ADDLIBS := \
 ../fstext/kaldi-fstext.a \
 ../hmm/kaldi-hmm.a \
 ../lat/kaldi-lat.a \
+../lm/kaldi-lm.a \
 ../matrix/kaldi-matrix.a \
 ../nnet3/kaldi-nnet3.a \
 ../util/kaldi-util.a
@@ -145,6 +151,7 @@ fst \
 fstext \
 hmm \
 lat \
+lm \
 matrix \
 nnet3 \
 tests \

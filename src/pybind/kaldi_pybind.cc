@@ -32,6 +32,7 @@
 #include "hmm/hmm_pybind.h"
 #include "itf/itf_pybind.h"
 #include "lat/lat_pybind.h"
+#include "lm/lm_pybind.h"
 #include "matrix/matrix_pybind.h"
 #include "nnet3/nnet3_pybind.h"
 #include "util/util_pybind.h"
@@ -57,6 +58,8 @@ PYBIND11_MODULE(kaldi_pybind, m) {
   pybind_hmm(m);
 
   pybind_ctc(m);
+
+  pybind_lm(m);
 
   void test_dlpack(py::module & m);  // forward declaration
   test_dlpack(m);

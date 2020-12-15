@@ -1,4 +1,4 @@
-// pybind/lat/lat_pybind.cc
+// pybind/lm/lm_pybind.cc
 
 // Copyright 2020   Mobvoi AI Lab, Beijing, China
 //                  (author: Fangjun Kuang, Yaguang Hu, Jian Wang)
@@ -16,15 +16,9 @@
 // See the Apache 2 License for the specific language governing permissions and
 // limitations under the License.
 
-#include "lat/lat_pybind.h"
-#include "lat/kaldi_lattice_pybind.h"
-#include "lat/lattice_functions_pybind.h"
-#include "lat/word_align_lattice_pybind.h"
-void pybind_lat(py::module& m) {
-  pybind_kaldi_lattice(m);
-  pybind_word_align_lattice(m);
-  pybind_lattice_functions(m);
+#include "lm/lm_pybind.h"
+#include "lm/const_arpa_lm_pybind.h"
 
-  // pybind_determinize_lattice_pruned is wrapped in fst/fst_pybind.cc
-  // since it is in the `fst` namespace
+void pybind_lm(py::module& m) {
+  pybind_const_arpa_lm(m);
 }
