@@ -1,7 +1,6 @@
 // pybind/fstext/deterministic_fst_inl_pybind.h
-// created by Shivani Saini,Govivace Inc.
 
-// Copyright 2011-2012  Microsoft Corporation  Johns Hopkins University (Author: Daniel Povey)
+// Copyright 2020 GoVivace Inc. (Author: Shivani Saini)
 
 // See ../../COPYING for clarification regarding multiple authors
 //
@@ -28,9 +27,6 @@
 //#include "fstext/deterministic-fst-inl.h"
 //#include "fstext/deterministic_fst_pybind.h"
 
-#include "lat/word_align_lattice_pybind.h"
-#include "lat/kaldi_lattice_pybind.h"
-
 #include "fst/arc_pybind.h"
 #include "fst/fst_pybind.h"
 #include "fst/vector_fst_pybind.h"
@@ -39,32 +35,27 @@
 #include "util/kaldi_table_pybind.h"
 
 
-namespace fst {
+using namespace fst;
+void pybind_deterministic_on_demand_fst(py::module& m);
+/*
 template <class Arc>
 void pybind_deterministic_on_demand_fst(py::module& m, const std::string& class_name,
                                 const std::string& class_help_doc = "") {
-  using PyClass = fst::DeterministicOnDemandFst<Arc>;
+  //using PyClass = DeterministicOnDemandFst<Arc>;
   py::class_<PyClass>(m, class_name.c_str(), class_help_doc.c_str())
-      .def(py::init<>());
- }
+    .def("Start", &DeterministicOnDemandFst<Arc>::Start)
+    .def("Final", &DeterministicOnDemandFst<Arc>::Final)
+    .def("GetArc", &DeterministicOnDemandFst<Arc>::GetArc);
+
 template<class Arc>
 void pybind_backoff_deterministic_on_demand_fst(py::module& m, const std::string& class_name,
                                 const std::string& class_help_doc = "") {
-  using PyClass = fst::BackoffDeterministicOnDemandFst<Arc>;
-  py::class_<PyClass,fst::DeterministicOnDemandFst<Arc>>(m, class_name.c_str(), class_help_doc.c_str())
+  using PyClass = BackoffDeterministicOnDemandFst<Arc>;
+  py::class_<PyClass,DeterministicOnDemandFst<Arc>>(m, class_name.c_str(), class_help_doc.c_str())
     .def(py::init<const Fst<Arc>&>(),py::arg("fst"));
 }
 
-void pybind_scale_deterministic_on_demand_fst(py::module& m) {
-  {
-    using PyClass = fst::ScaleDeterministicOnDemandFst;
-    py::class_<PyClass,fst::DeterministicOnDemandFst<fst::StdArc>>(m,"fst::ScaleDeterministicOnDemandFst")
-    .def(py::init<float,DeterministicOnDemandFst<fst::StdArc>>(),py::arg("scale"),py::arg("det_fst"), py::return_value_policy::reference);
-  }
-}
 
-
-} // end namespace fst
-
+*/
 #endif  // KALDI_PYBIND_FSTEXT_DETERMINISTIC_FST_INL_PYBIND_H_
 

@@ -1,8 +1,6 @@
 // pybind/lm/lat_pybind.h
-// Created by Shivani Saini, Govivace Inc.
 
-// Copyright 2020   Mobvoi AI Lab, Beijing, China
-//                  (author: Fangjun Kuang, Yaguang Hu, Jian Wang)
+// Copyright 2020 GoVivace Inc. (Author: Shivani Saini)
 
 // See ../../../COPYING for clarification regarding multiple authors
 //

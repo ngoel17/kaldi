@@ -1,8 +1,6 @@
-//pybind_compose_lattice_pruned
-// lat/word_align_lattice_pybind.cc
-//created by Shivani Saini,Govivace Inc.
+//  pybind/lat/compose_lattice_pruned.cc
 
-// Copyright 2011-2012  Microsoft Corporation  Johns Hopkins University (Author: Daniel Povey)
+// Copyright 2020 GoVivace Inc. (Author: Shivani Saini)
 
 // See ../../COPYING for clarification regarding multiple authors
 //

@@ -60,5 +60,7 @@ void pybind_wave_reader(py::module& m) {
   pybind_sequential_table_reader<WaveInfoHolder>(m, "_SequentialWaveInfoReader");
   pybind_random_access_table_reader<WaveHolder>(m, "_RandomAccessWaveReader");
   pybind_random_access_table_reader<WaveInfoHolder>(m, "_RandomAccessWaveInfoReader");
+  pybind_table_writer<WaveHolder>(m, "_TableWaveWriter");
+  
 }
 

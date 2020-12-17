@@ -1,4 +1,4 @@
-// pybind/lat/word_align_lattice_pybind.h
+// pybind/util/text_utils_pybind.h
 
 // Copyright 2020 GoVivace Inc. (Author: Shivani Saini)
 
@@ -15,11 +15,11 @@
 // See the Apache 2 License for the specific language governing permissions and
 // limitations under the License.
 
-#ifndef KALDI_PYBIND_LAT_WORD_ALIGN_LATTICE_PYBIND_H_
-#define KALDI_PYBIND_LAT_WORD_ALIGN_LATTICE_PYBIND_H_
+#ifndef KALDI_PYBIND_TEXT_UTILS_PYBIND_H_
+#define KALDI_PYBIND_TEXT_UTILS_PYBIND_H_
 
 #include "pybind/kaldi_pybind.h"
 
-void pybind_word_align_lattice(py::module& m);
+void pybind_text_utils(py::module& m);
 
-#endif  // KALDI_PYBIND_LAT_WORD_ALIGN_LATTICE_PYBIND_H_
+#endif  // KALDI_PYBIND_TEXT_UTILS_PYBIND_H_

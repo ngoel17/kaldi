@@ -1,7 +1,6 @@
-// pybind/lat/lattice_functions_pybind.h
-// Written by Shivani Saini, Speech Application Engineer, GoVivace Inc.
-// Copyright 2020   Mobvoi AI Lab, Beijing, China
-//                  (author: Fangjun Kuang, Yaguang Hu, Jian Wang)
+//  pybind/lat/lattice_functions_pybind.h
+
+// Copyright 2020 GoVivace Inc. (Author: Shivani Saini)
 
 // See ../../../COPYING for clarification regarding multiple authors
 //

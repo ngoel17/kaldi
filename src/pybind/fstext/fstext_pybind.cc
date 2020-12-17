@@ -24,6 +24,10 @@
 void pybind_fstext(py::module& m) {
   pybind_kaldi_fst_io(m);
   pybind_lattice_weight(m);
-  fst::pybind_scale_deterministic_on_demand_fst(m);
-  //pybind_deterministic_fst(m);
+  //fst::pybind_scale_deterministic_on_demand_fst(m);
+  pybind_deterministic_on_demand_fst(m);
+  
+  //pybind_deterministic_on_demand_fst<fst::StdArc>(m, "DeterministicOnDemandStdFst");
+  //pybind_scale_deterministic_on_demand_fst(m);
+
 }

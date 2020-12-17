@@ -40,6 +40,7 @@ from kaldi_pybind.feat import _SequentialWaveReader
 from kaldi_pybind.feat import _RandomAccessWaveReader
 from kaldi_pybind.feat import _SequentialWaveInfoReader
 from kaldi_pybind.feat import _RandomAccessWaveInfoReader
+from kaldi_pybind.feat import _TableWaveWriter
 
 from kaldi_pybind import _SequentialBaseFloatMatrixReader
 from kaldi_pybind import _RandomAccessBaseFloatMatrixReader
@@ -535,6 +536,10 @@ class IntVectorWriter(_WriterBase, _Int32VectorWriter):
 
 class LatticeWriter(_WriterBase, _LatticeWriter):
     '''Table writer for lattices.'''
+    pass
+
+class TableWaveWriter(_WriterBase, _TableWaveWriter):
+    '''Table writer for wave.'''
     pass
 
 

@@ -1,7 +1,6 @@
-// lm/const_arpa_lm_pybind.cc
-// Created by Shivani Saini,Govivace Inc.
+// pybind/lm/const_arpa_lm_pybind.cc
 
-// Copyright 2011-2012  Microsoft Corporation  Johns Hopkins University (Author: Daniel Povey)
+// Copyright 2020 GoVivace Inc. (Author: Shivani Saini)
 
 // See ../../COPYING for clarification regarding multiple authors
 //
@@ -30,6 +29,12 @@ void pybind_const_arpa_lm(py::module& m) {
 	.def(py::init<>())
 	.def("Read", &PyClass::Read, py::arg("is"), py::arg("binary"));
       
+    }
+    {
+      using PyClass = ConstArpaLmDeterministicFst;
+      py::class_<PyClass>(m, "ConstArpaLmDeterministicFst")
+        .def(py::init<const ConstArpaLm&>(), py::arg("lm"));
+
     }
 
 }
