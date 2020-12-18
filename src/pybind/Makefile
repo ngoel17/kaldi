@@ -67,8 +67,8 @@ fst/fst_pybind.cc \
 fst/symbol_table_pybind.cc \
 fst/vector_fst_pybind.cc \
 fst/weight_pybind.cc \
-fstext/fstext_pybind.cc \
 fstext/deterministic_fst_pybind.cc \
+fstext/fstext_pybind.cc \
 fstext/kaldi_fst_io_pybind.cc \
 fstext/lattice_weight_pybind.cc \
 hmm/hmm_pybind.cc \
