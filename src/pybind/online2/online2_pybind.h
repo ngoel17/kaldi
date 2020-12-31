@@ -1,7 +1,6 @@
-// pybind/fstext/fstext_pybind.cc
+// pybind/online2/online2_pybind.h
 
-// Copyright 2020   Mobvoi AI Lab, Beijing, China
-//                  (author: Fangjun Kuang, Yaguang Hu, Jian Wang)
+// Copyright 2020 GoVivace Inc. (Author: Shivani Saini)
 
 // See ../../../COPYING for clarification regarding multiple authors
 //
@@ -16,14 +15,11 @@
 // See the Apache 2 License for the specific language governing permissions and
 // limitations under the License.
 
-#include "fstext/fstext_pybind.h"
-#include "fstext/deterministic_fst_pybind.h"
-#include "fstext/kaldi_fst_io_pybind.h"
-#include "fstext/lattice_weight_pybind.h"
+#ifndef KALDI_PYBIND_ONLINE2_ONLINE2_PYBIND_H_
+#define KALDI_PYBIND_ONLINE2_ONLINE2_PYBIND_H_
 
-void pybind_fstext(py::module& m) {
-  pybind_kaldi_fst_io(m);
-  pybind_lattice_weight(m);
-  pybind_deterministic_fst(m);
+#include "pybind/kaldi_pybind.h"
 
-}
+void pybind_online2(py::module& m);
+
+#endif  // KALDI_PYBIND_ONLINE2_ONLINE2_PYBIND_H_

@@ -100,7 +100,7 @@ void pybind_kaldi_matrix(py::module& m) {
         return new SubMatrix<float>(reinterpret_cast<float*>(info.ptr),
                                     info.shape[0], info.shape[1],
                                     info.strides[0] / sizeof(float));
-      }));
+	  }));
 
   py::class_<DLPackSubMatrix<float>, SubMatrix<float>>(m,
                                                        "DLPackFloatSubMatrix")

@@ -35,6 +35,7 @@
 #include "lm/lm_pybind.h"
 #include "matrix/matrix_pybind.h"
 #include "nnet3/nnet3_pybind.h"
+#include "online2/online2_pybind.h"
 #include "util/util_pybind.h"
 
 PYBIND11_MODULE(kaldi_pybind, m) {
@@ -60,6 +61,8 @@ PYBIND11_MODULE(kaldi_pybind, m) {
   pybind_ctc(m);
 
   pybind_lm(m);
+
+  pybind_online2(m);
 
   void test_dlpack(py::module & m);  // forward declaration
   test_dlpack(m);

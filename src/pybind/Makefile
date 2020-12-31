@@ -79,9 +79,12 @@ itf/decodable_itf_pybind.cc \
 itf/itf_pybind.cc \
 itf/options_itf_pybind.cc \
 kaldi_pybind.cc \
+online2/online_nnet2_feature_pipeline_pybind.cc \
+online2/online2_pybind.cc \
 lat/determinize_lattice_pruned_pybind.cc \
 lat/kaldi_lattice_pybind.cc \
 lat/word_align_lattice_pybind.cc \
+lat/sausages_pybind.cc \
 lat/lattice_functions_pybind.cc \
 lat/compose_lattice_pruned.cc \
 lm/const_arpa_lm_pybind.cc \
@@ -127,6 +130,7 @@ ADDLIBS := \
 ../lm/kaldi-lm.a \
 ../matrix/kaldi-matrix.a \
 ../nnet3/kaldi-nnet3.a \
+../online2/kaldi-online2.a \
 ../util/kaldi-util.a
 
 
@@ -156,6 +160,7 @@ lat \
 lm \
 matrix \
 nnet3 \
+online2 \
 tests \
 util
 

@@ -17,6 +17,7 @@
 // limitations under the License.
 
 #include "lat/lat_pybind.h"
+#include "lat/sausages_pybind.h"
 #include "lat/kaldi_lattice_pybind.h"
 #include "lat/lattice_functions_pybind.h"
 #include "lat/word_align_lattice_pybind.h"
@@ -24,6 +25,7 @@ void pybind_lat(py::module& m) {
   pybind_kaldi_lattice(m);
   pybind_word_align_lattice(m);
   pybind_lattice_functions(m);
+  pybind_sausages(m);
 
   // pybind_determinize_lattice_pruned is wrapped in fst/fst_pybind.cc
   // since it is in the `fst` namespace

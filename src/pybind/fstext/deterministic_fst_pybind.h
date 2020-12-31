@@ -1,6 +1,7 @@
 // pybind/fstext/deterministic_fst_inl_pybind.h
 
 // Copyright 2020 GoVivace Inc. (Author: Shivani Saini)
+//                Xiaomi Corporation (Author: Fangjun Kuang)
 
 // See ../../COPYING for clarification regarding multiple authors
 //
@@ -20,42 +21,35 @@
 #ifndef KALDI_PYBIND_FSTEXT_DETERMINISTIC_FST_PYBIND_H_
 #define KALDI_PYBIND_FSTEXT_DETERMINISTIC_FST_PYBIND_H_
 
+#include "fstext/deterministic-fst.h"
 #include "pybind/kaldi_pybind.h"
 
-
-#include "fstext/deterministic-fst.h"
-//#include "fstext/deterministic-fst-inl.h"
-//#include "fstext/deterministic_fst_pybind.h"
-
-#include "fst/arc_pybind.h"
-#include "fst/fst_pybind.h"
-#include "fst/vector_fst_pybind.h"
-#include "fstext/lattice-weight.h"
-#include "lat/kaldi-lattice.h"
-#include "util/kaldi_table_pybind.h"
-
-
-using namespace fst;
-void pybind_deterministic_on_demand_fst(py::module& m);
-/*
-template <class Arc>
-void pybind_deterministic_on_demand_fst(py::module& m, const std::string& class_name,
-                                const std::string& class_help_doc = "") {
-  //using PyClass = DeterministicOnDemandFst<Arc>;
-  py::class_<PyClass>(m, class_name.c_str(), class_help_doc.c_str())
-    .def("Start", &DeterministicOnDemandFst<Arc>::Start)
-    .def("Final", &DeterministicOnDemandFst<Arc>::Final)
-    .def("GetArc", &DeterministicOnDemandFst<Arc>::GetArc);
-
-template<class Arc>
-void pybind_backoff_deterministic_on_demand_fst(py::module& m, const std::string& class_name,
-                                const std::string& class_help_doc = "") {
-  using PyClass = BackoffDeterministicOnDemandFst<Arc>;
-  py::class_<PyClass,DeterministicOnDemandFst<Arc>>(m, class_name.c_str(), class_help_doc.c_str())
-    .def(py::init<const Fst<Arc>&>(),py::arg("fst"));
+template <typename Arc>
+void pybind_deterministic_on_demand_fst(py::module& m, const char* name) {
+  using PyClass = fst::DeterministicOnDemandFst<Arc>;
+  py::class_<PyClass, std::unique_ptr<PyClass, py::nodelete>> pyclass(m, name);
+  pyclass.def("Start", &PyClass::Start);
+  pyclass.def("Weight", &PyClass::Final, py::arg("s"));
+  pyclass.def("GetArc", &PyClass::GetArc, py::arg("s"), py::arg("ilabel"),
+              py::arg("oarc"));
 }
 
+template <typename Arc>
+void pybind_backoff_deterministic_on_demand_fst(py::module& m,
+                                                const char* name) {
+  using PyClass = fst::BackoffDeterministicOnDemandFst<Arc>;
+  py::class_<PyClass, fst::DeterministicOnDemandFst<Arc>> pyclass(m, name);
+  pyclass.def(py::init<const fst::Fst<Arc>&>(), py::arg("fst"));
+}
 
-*/
+template <typename Arc>
+void pybind_compose_deterministic_on_demand_fst(py::module& m,
+                                                const char* name) {
+  using PyClass = fst::ComposeDeterministicOnDemandFst<Arc>;
+  py::class_<PyClass, fst::DeterministicOnDemandFst<Arc>> pyclass(m, name);
+  pyclass.def(py::init<fst::DeterministicOnDemandFst<Arc> *,fst::DeterministicOnDemandFst<Arc> *>(), py::arg("fst1"), py::arg("fst2"));
+}
+
+void pybind_deterministic_fst(py::module& m);
+
 #endif  // KALDI_PYBIND_FSTEXT_DETERMINISTIC_FST_INL_PYBIND_H_
-
