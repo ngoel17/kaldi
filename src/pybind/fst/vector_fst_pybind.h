@@ -49,14 +49,18 @@ void pybind_mutable_arc_iterator_impl(py::module& m,
 }
 
 template <typename A>
-void pybind_vector_fst_impl(py::module& m, const std::string& class_name,
+void pybind_vector_fst_impl(py::module& m, const std::string& parent_name,
+                            const std::string& class_name,
                             const std::string& class_help_doc = "") {
+  py::class_<fst::Fst<A>, std::unique_ptr<fst::Fst<A>, py::nodelete>>(
+      m, parent_name.c_str());
+
   using PyClass = fst::VectorFst<A>;
   using Arc = typename PyClass::Arc;
   using StateId = typename PyClass::StateId;
   using State = typename PyClass::State;
 
-  py::class_<PyClass>(m, class_name.c_str(), class_help_doc.c_str())
+  py::class_<PyClass, fst::Fst<A>>(m, class_name.c_str(), class_help_doc.c_str())
       .def(py::init<>())
       .def(py::init<const fst::Fst<Arc>&>(), py::arg("fst"))
       .def(py::init<const PyClass&, bool>(), py::arg("fst"),
