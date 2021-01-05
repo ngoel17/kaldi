@@ -52,8 +52,9 @@ template <typename A>
 void pybind_vector_fst_impl(py::module& m, const std::string& parent_name,
                             const std::string& class_name,
                             const std::string& class_help_doc = "") {
-  py::class_<fst::Fst<A>, std::unique_ptr<fst::Fst<A>, py::nodelete>>(
-      m, parent_name.c_str());
+  if (parent_name.size() > 0)
+    py::class_<fst::Fst<A>, std::unique_ptr<fst::Fst<A>, py::nodelete>>(
+        m, parent_name.c_str());
 
   using PyClass = fst::VectorFst<A>;
   using Arc = typename PyClass::Arc;
