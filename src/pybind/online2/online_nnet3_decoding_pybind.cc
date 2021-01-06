@@ -1,10 +1,12 @@
-// pybind/online2/online2_pybind.cc
+//  pybind/online2/online_nnet3_decoding_pybind.cc
 
 // Copyright 2020 GoVivace Inc. (Author: Shivani Saini)
 
-// See ../../../COPYING for clarification regarding multiple authors
+// See ../../COPYING for clarification regarding multiple authors
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
 //
 //  http://www.apache.org/licenses/LICENSE-2.0
 //
@@ -15,17 +17,18 @@
 // See the Apache 2 License for the specific language governing permissions and
 // limitations under the License.
 
-#include "online2/online2_pybind.h"
-#include "online2/online_nnet2_feature_pipeline_pybind.h"
-#include "online2/online_endpoint_pybind.h"
-#include "online2/online_ivector_feature_pybind.h"
-#include "online2/online_timing_pybind.h"
+
+
+#include "util/stl-utils.h"
 #include "online2/online_nnet3_decoding_pybind.h"
 
-void pybind_online2(py::module& m) {
-  pybind_online_nnet2_feature_pipeline(m);
-  pybind_online_endpoint(m);
-  pybind_online_ivector_feature(m);
-  pybind_online_timing(m);
-  pybind_online_nnet3_decoding(m);
+#include "online2/online-nnet3-decoding.h"
+
+
+using namespace kaldi;
+
+void pybind_online_nnet3_decoding(py::module& m){
+  pybind_single_utterance_nnet_decoder_tpl<fst::Fst<fst::StdArc> >(
+      m, "SingleUtteranceNnet3Decoder");
 }
+

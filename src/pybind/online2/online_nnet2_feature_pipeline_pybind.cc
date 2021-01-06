@@ -18,7 +18,7 @@
 // limitations under the License.
 
 
-#include "lat/word-align-lattice.h"
+
 #include "util/stl-utils.h"
 #include "online2/online_nnet2_feature_pipeline_pybind.h"
 
@@ -59,5 +59,4 @@ void pybind_online_nnet2_feature_pipeline(py::module& m) {
       .def("InputFeature",&PyClass::InputFeature);
 
   }
-
 }

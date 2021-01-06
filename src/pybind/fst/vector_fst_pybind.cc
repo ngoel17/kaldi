@@ -124,7 +124,8 @@ void PrintFstInfoImpl(const fst::FstInfo& fstinfo, std::ostream& ostrm) {
 }
 
 void pybind_vector_fst(py::module& m) {
-  pybind_vector_fst_impl<fst::StdArc>(m, "StdVectorFst");
+  //pybind_vector_fst_impl<fst::StdArc>(m, "StdVectorFst");
+  pybind_vector_fst_impl<fst::StdArc>(m, "", "StdVectorFst");
 
   pybind_state_iterator_impl<fst::StdVectorFst>(m, "StdVectorFstStateIterator");
   pybind_arc_iterator_impl<fst::StdVectorFst>(m, "StdVectorFstArcIterator");

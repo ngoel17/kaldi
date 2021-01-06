@@ -30,6 +30,10 @@
 #include "nnet3/nnet_normalize_component_pybind.h"
 #include "nnet3/nnet_simple_component_pybind.h"
 
+#include "nnet3/decodable_simple_looped_pybind.h"
+#include "nnet3/am_nnet_simple_pybind.h"
+
+
 void pybind_nnet3(py::module& _m) {
   py::module m = _m.def_submodule("nnet3", "nnet3 pybind for Kaldi");
 
@@ -41,4 +45,6 @@ void pybind_nnet3(py::module& _m) {
   pybind_nnet_nnet(m);
   pybind_nnet_normalize_component(m);
   pybind_nnet_simple_component(m);
+  pybind_decodable_simple_looped(m);
+  pybind_am_nnet_simple(m);
 }
