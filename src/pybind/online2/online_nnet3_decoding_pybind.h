@@ -33,7 +33,15 @@ void pybind_single_utterance_nnet_decoder_tpl(py::module& m, const char* name) {
   pyclass.def("GetLattice",&PyClass::GetLattice, py::arg("end_of_utterance"), py::arg("clat"));
   pyclass.def("GetBestPath",&PyClass::GetBestPath, py::arg("end_of_utterance"), py::arg("best_path"));
   pyclass.def("EndpointDetected",&PyClass::EndpointDetected, py::arg("config"));
-  //pyclass.def("Decoder",&PyClass::Decoder);
+
+  /* KALDI code
+     const LatticeFasterOnlineDecoderTpl<FST> &Decoder() const { return decoder_; }
+  */
+
+  
+   pyclass.def("Decoder",overload_cast_<>()(&PyClass::Decoder<fst::StdArc>, py::const_));
+  
+   pyclass.def("Decoder",&PyClass::Decoder);
 }
 void pybind_online_nnet3_decoding(py::module& m);
 

@@ -25,7 +25,9 @@
 #include "pybind/kaldi_pybind.h"
 
 template <typename Arc>
-void pybind_deterministic_on_demand_fst(py::module& m, const char* name) {
+void pybind_deterministic_on_demand_fst(py::module& m,
+					const std::string& parent_name,
+					const char* name) {
   using PyClass = fst::DeterministicOnDemandFst<Arc>;
   py::class_<PyClass, std::unique_ptr<PyClass, py::nodelete>> pyclass(m, name);
   pyclass.def("Start", &PyClass::Start);
@@ -36,7 +38,12 @@ void pybind_deterministic_on_demand_fst(py::module& m, const char* name) {
 
 template <typename Arc>
 void pybind_backoff_deterministic_on_demand_fst(py::module& m,
+						const std::string& parent_name,
                                                 const char* name) {
+  if (parent_name.size() > 0)
+    py::class_<fst::DeterministicOnDemandFst<Arc>, std::unique_ptr<fst::DeterministicOnDemandFst<Arc>, py::nodelete>>(
+        m, parent_name.c_str());
+
   using PyClass = fst::BackoffDeterministicOnDemandFst<Arc>;
   py::class_<PyClass, fst::DeterministicOnDemandFst<Arc>> pyclass(m, name);
   pyclass.def(py::init<const fst::Fst<Arc>&>(), py::arg("fst"));
@@ -44,7 +51,12 @@ void pybind_backoff_deterministic_on_demand_fst(py::module& m,
 
 template <typename Arc>
 void pybind_compose_deterministic_on_demand_fst(py::module& m,
+						const std::string& parent_name,
                                                 const char* name) {
+  if (parent_name.size() > 0)
+    py::class_<fst::DeterministicOnDemandFst<Arc>, std::unique_ptr<fst::DeterministicOnDemandFst<Arc>, py::nodelete>>(
+        m, parent_name.c_str());
+
   using PyClass = fst::ComposeDeterministicOnDemandFst<Arc>;
   py::class_<PyClass, fst::DeterministicOnDemandFst<Arc>> pyclass(m, name);
   pyclass.def(py::init<fst::DeterministicOnDemandFst<Arc> *,fst::DeterministicOnDemandFst<Arc> *>(), py::arg("fst1"), py::arg("fst2"));

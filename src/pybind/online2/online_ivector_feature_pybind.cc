@@ -58,9 +58,26 @@ void pybind_online_ivector_feature(py::module& m) {
     using PyClass = OnlineSilenceWeighting;
     py::class_<PyClass>(m, "OnlineSilenceWeighting")
       .def(py::init<const TransitionModel &, const OnlineSilenceWeightingConfig &, int32>(),py::arg("trans_model"),py::arg("config"),py::arg("frame_subsampling_factor"))
-      .def("Active",&PyClass::Active);
-      //.def("ComputeCurrentTraceback",&PyClass::ComputeCurrentTraceback<fst::StdArc>,py::arg("decoder"),py::arg("use_final_probs")= false)
-      //.def("GetDeltaWeights",&PyClass::GetDeltaWeights,py::arg("num_frames_ready"),py::arg("first_decoder_frame"),py::arg("delta_weights"))
-      //.def("GetDeltaWeights",&PyClass::GetDeltaWeights,py::arg("num_frames_ready"),py::arg("delta_weights"));
+      .def("Active",&PyClass::Active)
+      .def("GetDeltaWeights",overload_cast_<int32, std::vector<std::pair<int32, BaseFloat> > *>()(&PyClass::GetDeltaWeights))
+      .def("GetDeltaWeights",overload_cast_<int32, int32, std::vector<std::pair<int32, BaseFloat> > *>()(&PyClass::GetDeltaWeights))
+    
+      .def("ComputeCurrentTraceback",&PyClass::ComputeCurrentTraceback<fst::StdArc>,py::arg("decoder"),py::arg("use_final_probs")= false)
+      .def("ComputeCurrentTraceback_fst",&PyClass::ComputeCurrentTraceback<fst::StdArc>,py::arg("decoder"),py::arg("use_final_probs")= false)
+      .def("ComputeCurrentTraceback",overload_cast_<const LatticeFasterOnlineDecoderTpl<fst::StdArc>, bool>()(&PyClass::ComputeCurrentTraceback<fst::StdArc>));
+
+    /*
+      Kaldi function
+      _____________________________________________________________________________________
+      template <typename FST>
+      void ComputeCurrentTraceback(const LatticeFasterOnlineDecoderTpl<FST> &decoder,
+                               bool use_final_probs = false);
+      template <typename FST>
+      void ComputeCurrentTraceback(const LatticeIncrementalOnlineDecoderTpl<FST> &decoder,
+                               bool use_final_probs = false);
+
+      ______________________________________________________________________________________
+    */    
+    
   }
 }

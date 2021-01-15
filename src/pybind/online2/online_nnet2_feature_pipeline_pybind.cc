@@ -39,7 +39,9 @@ void pybind_online_nnet2_feature_pipeline(py::module& m) {
     py::class_<PyClass>(m, "OnlineNnet2FeaturePipelineInfo")
       .def(py::init<>())
       .def(py::init<const OnlineNnet2FeaturePipelineConfig &>(),py::arg("config"))
-      .def("ivector_extractor_info",&PyClass::ivector_extractor_info)
+      .def("GetIvectorExtractorInfo", [](PyClass& self) -> OnlineIvectorExtractionInfo& {
+  return self.ivector_extractor_info;
+},  py::return_value_policy::reference_internal)
       //.def_readwrite("ivector_extractor_info", &PyClass::ivector_extractor_info)
       .def_readwrite("global_cmvn_stats_rxfilename", &PyClass::global_cmvn_stats_rxfilename)
       .def_readwrite("silence_weighting_config", &PyClass::silence_weighting_config);
@@ -56,6 +58,9 @@ void pybind_online_nnet2_feature_pipeline(py::module& m) {
       .def("AcceptWaveform",&PyClass::AcceptWaveform,py::arg("sampling_rate"),py::arg("waveform"))
       .def("FrameShiftInSeconds",&PyClass::FrameShiftInSeconds)
       .def("InputFinished",&PyClass::InputFinished)
+      
+      .def("IvectorFeature",overload_cast_<>()(&PyClass::IvectorFeature))
+
       //.def("IvectorFeature",&PyClass::IvectorFeature)
       .def("InputFeature",&PyClass::InputFeature);
 

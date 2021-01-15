@@ -28,13 +28,13 @@ static void pybind_scale_deterministic_on_demand_fst(py::module& m) {
 
 void pybind_deterministic_fst(py::module& m) {
   pybind_deterministic_on_demand_fst<fst::StdArc>(
-      m, "DeterministicOnDemandStdFst");
+						  m, "","DeterministicOnDemandStdFst");
 
   pybind_backoff_deterministic_on_demand_fst<fst::StdArc>(
-      m, "BackoffDeterministicOnDemandStdFst");
+							  m, "","BackoffDeterministicOnDemandStdFst");
   
   pybind_compose_deterministic_on_demand_fst<fst::StdArc>(
-      m,"ComposeDeterministicOnDemandStdFst");
+							  m, "", "ComposeDeterministicOnDemandStdFst");
 
   pybind_scale_deterministic_on_demand_fst(m);
 }

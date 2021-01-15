@@ -37,8 +37,9 @@ void pybind_am_nnet_simple(py::module& m) {
     using PyClass = AmNnetSimple;
     py::class_<PyClass>(m, "AmNnetSimple")
       .def(py::init<>())
-      .def("Read",&PyClass::Read,py::arg("is"),py::arg("binary"));
-    //.def("GetNnet",&PyClass::GetNnet);
+      .def("Read",&PyClass::Read,py::arg("is"),py::arg("binary"))
+      .def("GetNnet",overload_cast_<>()(&PyClass::GetNnet));
+    
   }
 }
 
