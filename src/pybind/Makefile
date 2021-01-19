@@ -138,7 +138,8 @@ ADDLIBS := \
 ../matrix/kaldi-matrix.a \
 ../nnet3/kaldi-nnet3.a \
 ../online2/kaldi-online2.a \
-../util/kaldi-util.a
+../util/kaldi-util.a \
+../ivector/kaldi-ivector.a
 
 
 EXTRA_LDLIBS += $(foreach dep,$(ADDLIBS), $(dir $(dep))lib$(notdir $(basename $(dep))).so)

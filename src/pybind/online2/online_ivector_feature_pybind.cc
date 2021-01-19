@@ -18,15 +18,17 @@
 // limitations under the License.
 
 
-
+//#include "decoder/lattice_faster_online_decoder_pybind.h"
+//#include "decoder/lattice_faster_decoder_pybind.h"
 #include "util/stl-utils.h"
 #include "online2/online_ivector_feature_pybind.h"
-
 #include "online2/online-ivector-feature.h"
-
+#include "fst/fst.h"
 
 using namespace kaldi;
 
+namespace {
+template <typename FST, typename Token = decoder::StdToken>  
 void pybind_online_ivector_feature(py::module& m) {
 
   {
@@ -61,23 +63,7 @@ void pybind_online_ivector_feature(py::module& m) {
       .def("Active",&PyClass::Active)
       .def("GetDeltaWeights",overload_cast_<int32, std::vector<std::pair<int32, BaseFloat> > *>()(&PyClass::GetDeltaWeights))
       .def("GetDeltaWeights",overload_cast_<int32, int32, std::vector<std::pair<int32, BaseFloat> > *>()(&PyClass::GetDeltaWeights))
-    
-      .def("ComputeCurrentTraceback",&PyClass::ComputeCurrentTraceback<fst::StdArc>,py::arg("decoder"),py::arg("use_final_probs")= false)
-      .def("ComputeCurrentTraceback_fst",&PyClass::ComputeCurrentTraceback<fst::StdArc>,py::arg("decoder"),py::arg("use_final_probs")= false)
-      .def("ComputeCurrentTraceback",overload_cast_<const LatticeFasterOnlineDecoderTpl<fst::StdArc>, bool>()(&PyClass::ComputeCurrentTraceback<fst::StdArc>));
-
-    /*
-      Kaldi function
-      _____________________________________________________________________________________
-      template <typename FST>
-      void ComputeCurrentTraceback(const LatticeFasterOnlineDecoderTpl<FST> &decoder,
-                               bool use_final_probs = false);
-      template <typename FST>
-      void ComputeCurrentTraceback(const LatticeIncrementalOnlineDecoderTpl<FST> &decoder,
-                               bool use_final_probs = false);
-
-      ______________________________________________________________________________________
-    */    
-    
+      .def("ComputeCurrentTraceback",&PyClass::ComputeCurrentTraceback<FST>,py::arg("decoder"),py::arg("use_final_probs")= false);
   }
+}
 }

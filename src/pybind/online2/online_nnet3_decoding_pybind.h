@@ -39,9 +39,10 @@ void pybind_single_utterance_nnet_decoder_tpl(py::module& m, const char* name) {
   */
 
   
-   pyclass.def("Decoder",overload_cast_<>()(&PyClass::Decoder<fst::StdArc>, py::const_));
+  //   pyclass.def("Decoder",overload_cast_<>()(&PyClass::Decoder<FST>, py::const_));
   
-   pyclass.def("Decoder",&PyClass::Decoder);
+  pyclass.def("Decoder", &PyClass::template Decoder<FST>);
+     //  pyclass.def("Decoder",&PyClass::Decoder<FST>);
 }
 void pybind_online_nnet3_decoding(py::module& m);
 
