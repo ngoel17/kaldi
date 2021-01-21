@@ -223,4 +223,20 @@ FST == StdFst and it notices that the actual FST type is
 fst::VectorFst<fst::StdArc> or fst::ConstFst<fst::StdArc>, the decoder object
 will internally cast itself to one that is templated on those more specific
 types; this is an optimization for speed.)doc");
+  pybind_lattice_faster_decoder_impl<fst::StdFst, BackpointerToken>(
+      m, "LatticeFasterDecoderBackpointerToken",
+      R"doc(This is the "normal" lattice-generating decoder.
+See `lattices_generation` `decoders_faster` and `decoders_simple`
+for more information.
+
+The decoder is templated on the FST type and the token type.  The token type
+will normally be StdToken, but also may be BackpointerToken which is to support
+quick lookup of the current best path (see lattice-faster-online-decoder.h)
+
+The FST you invoke this decoder which is expected to equal
+Fst::Fst<fst::StdArc>, a.k.a. StdFst, or GrammarFst.  If you invoke it with
+FST == StdFst and it notices that the actual FST type is
+fst::VectorFst<fst::StdArc> or fst::ConstFst<fst::StdArc>, the decoder object
+will internally cast itself to one that is templated on those more specific
+types; this is an optimization for speed.)doc");
 }
