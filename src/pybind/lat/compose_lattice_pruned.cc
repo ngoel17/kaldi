@@ -19,6 +19,7 @@
 
 
 #include "lat/compose-lattice-pruned.h"
+#include "compose_lattice_pruned.h"
 #include "hmm/transition-model.h"
 #include "util/stl-utils.h"
 #include "lat/word_align_lattice_pybind.h"

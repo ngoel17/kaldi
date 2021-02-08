@@ -1,4 +1,4 @@
-// pybind/online2/online2_pybind.cc
+// pybind/online2/online_wav_nnet3_latgen_pybind.h
 
 // Copyright 2020 GoVivace Inc. (Author: Shivani Saini)
 
@@ -15,19 +15,11 @@
 // See the Apache 2 License for the specific language governing permissions and
 // limitations under the License.
 
-#include "online2/online2_pybind.h"
-#include "online2/online_nnet2_feature_pipeline_pybind.h"
-#include "online2/online_endpoint_pybind.h"
-#include "online2/online_ivector_feature_pybind.h"
-#include "online2/online_timing_pybind.h"
-#include "online2/online_nnet3_decoding_pybind.h"
-#include "online2/online_wav_nnet3_latgen_pybind.h"
+#ifndef KALDI_PYBIND_ONLINE2_ONLINE_WAV_NNET3_LATGEN_PYBIND_H_
+#define KALDI_PYBIND_ONLINE2_ONLINE_WAV_NNET3_LATGEN_PYBIND_H_
 
-void pybind_online2(py::module& m) {
-  pybind_online_nnet2_feature_pipeline(m);
-  pybind_online_endpoint(m);
-  pybind_online_ivector_feature(m);
-  pybind_online_timing(m);
-  pybind_online_nnet3_decoding(m);
-  pybind_online_wav_nnet3_latgen(m);
-}
+#include "pybind/kaldi_pybind.h"
+
+void pybind_online_wav_nnet3_latgen(py::module& m);
+
+#endif  // KALDI_PYBIND_ONLINE2_ONLINE_WAV_NNET3_LATGEN_PYBIND_H_

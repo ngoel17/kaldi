@@ -108,6 +108,7 @@ nnet3/nnet_normalize_component_pybind.cc \
 nnet3/nnet_simple_component_pybind.cc \
 online2/online_endpoint_pybind.cc \
 online2/online_ivector_feature_pybind.cc \
+online2/online_wav_nnet3_latgen_pybind.cc \
 online2/online_nnet2_feature_pipeline_pybind.cc \
 online2/online2_pybind.cc \
 online2/online_nnet3_decoding_pybind.cc \

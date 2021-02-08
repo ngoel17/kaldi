@@ -27,8 +27,6 @@
 
 using namespace kaldi;
 
-namespace {
-template <typename FST, typename Token = decoder::StdToken>  
 void pybind_online_ivector_feature(py::module& m) {
 
   {
@@ -62,8 +60,6 @@ void pybind_online_ivector_feature(py::module& m) {
       .def(py::init<const TransitionModel &, const OnlineSilenceWeightingConfig &, int32>(),py::arg("trans_model"),py::arg("config"),py::arg("frame_subsampling_factor"))
       .def("Active",&PyClass::Active)
       .def("GetDeltaWeights",overload_cast_<int32, std::vector<std::pair<int32, BaseFloat> > *>()(&PyClass::GetDeltaWeights))
-      .def("GetDeltaWeights",overload_cast_<int32, int32, std::vector<std::pair<int32, BaseFloat> > *>()(&PyClass::GetDeltaWeights))
-      .def("ComputeCurrentTraceback",&PyClass::ComputeCurrentTraceback<FST>,py::arg("decoder"),py::arg("use_final_probs")= false);
-  }
+      .def("GetDeltaWeights",overload_cast_<int32, int32, std::vector<std::pair<int32, BaseFloat> > *>()(&PyClass::GetDeltaWeights));
 }
 }
